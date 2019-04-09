@@ -1,6 +1,6 @@
 if ('serviceWorker' in navigator) {
     // Весь код регистрации у нас асинхронный.
-    navigator.serviceWorker.register('/sw-testing/sw.js',{scope:'./cached'})
+    navigator.serviceWorker.register('/sw-testing/sw.js')
       .then(() => navigator.serviceWorker.ready.then((worker) => {
         worker.sync.register('syncdata');
       }))
