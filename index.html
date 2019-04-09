@@ -32,7 +32,7 @@
       console.log(evt);
       var message = JSON.parse(evt.data);
       var isRefresh = message.type === 'refresh';
-      var isAsset = message.url.includes('cached');
+      var isAsset = message.url.includes('sw-testing');
       var lastETag = localStorage.currentETag;
       var isNew =  lastETag !== message.eTag;
       if (isRefresh && isAsset && isNew) {
