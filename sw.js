@@ -1,11 +1,10 @@
 const CACHE = 'cache-update-and-refresh-v1';
-const location = window.location.href;
 self.addEventListener('install', (event) => {
     console.log('Установлен');
 
     event.waitUntil(caches.open(CACHE).then(function (cache) {
     cache.addAll([
-      `${location}cached`
+      './cached'
     ]);
   }));
 });
