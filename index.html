@@ -25,7 +25,7 @@
   <p id="update-notice" hidden>New content available. <a href="#" id="update">Update</a></p>
 
   <script>
-  var CACHE = 'cache-update-and-refresh';
+  var CACHE = 'cache-update-and-refresh-v1';
 
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.onmessage = function (evt) {
@@ -48,13 +48,16 @@
 
     var update = document.querySelector('#update');
     update.onclick = function (evt) {
-      var img = document.querySelector('img');
+      var img = document.querySelectorAll('img')[1];
+      console.log(img);
       evt.preventDefault();
       caches.open(CACHE)
       .then(function (cache) {
+        console.log(cache);
         return cache.match(img.src);
       })
       .then(function (response) {
+        console.log(response);
         return response.blob();
       })
       .then(function (bodyBlob) {
