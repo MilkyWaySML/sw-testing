@@ -4,7 +4,7 @@ self.addEventListener('install', (event) => {
 
     event.waitUntil(caches.open(CACHE).then(function (cache) {
     cache.addAll([
-      './cached'
+      'https://github.com/MilkyWaySML/sw-testing/cached/'
     ]);
   }));
 });
