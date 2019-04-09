@@ -5,7 +5,7 @@ self.addEventListener('install', (event) => {
 
     event.waitUntil(caches.open(CACHE).then(function (cache) {
     cache.addAll([
-      './cached'
+      window.location.href+'cached'
     ]);
   }));
 });
