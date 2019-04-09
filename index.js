@@ -5,4 +5,12 @@ if ('serviceWorker' in navigator) {
         worker.sync.register('syncdata');
       }))
       .catch((err) => console.log(err));
+
+    navigator.serviceWorker.ready.then(reload);
+    var reloadButton = document.querySelector('#reload');
+    reloadButton.onclick = reload;
+
+    function reload() {
+      window.location.reload();
+    }
 }
