@@ -24,6 +24,48 @@
 
   <p id="update-notice">New content available. <a href="#" id="update">Update</a></p>
 
+  <script>
+  var CACHE = 'cache-update-and-refresh';
+
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.onmessage = function (evt) {
+      console.log(evt);
+      var message = JSON.parse(evt.data);
+      var isRefresh = message.type === 'refresh';
+      var isAsset = message.url.includes('cached');
+      var lastETag = localStorage.currentETag;
+      var isNew =  lastETag !== message.eTag;
+      if (isRefresh && isAsset && isNew) {
+        if (lastETag) {
+          notice.hidden = false;
+        }
+        localStorage.currentETag = message.eTag;
+      }
+    };
+
+    var notice = document.querySelector('#update-notice');
+
+    var update = document.querySelector('#update');
+    update.onclick = function (evt) {
+      var img = document.querySelector('img');
+      evt.preventDefault();
+      caches.open(CACHE)
+      .then(function (cache) {
+        return cache.match(img.src);
+      })
+      .then(function (response) {
+        return response.blob();
+      })
+      .then(function (bodyBlob) {
+        var url = URL.createObjectURL(bodyBlob);
+        img.src = url;
+        notice.hidden = true;
+      });
+    };
+  }
+
+  </script>
+
   <script type="text/javascript" src="/sw-testing/index.js"></script></body>
 
 </html>
