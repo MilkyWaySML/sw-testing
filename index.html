@@ -37,6 +37,7 @@
       var isNew =  lastETag !== message.eTag;
       if (isRefresh && isAsset && isNew) {
         if (lastETag) {
+          console.log('new');
           notice.hidden = false;
         }
         localStorage.currentETag = message.eTag;
