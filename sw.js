@@ -45,6 +45,7 @@ self.addEventListener('install', function(evt) {
 });
 
 self.addEventListener('fetch', function(evt) {
+  const requestURL = new URL(evt.request.url);
   console.log('The service worker is serving the asset.');
   if(!regExp.test(requestURL.pathname) && evt.request.method != "POST"){
     evt.respondWith(fromNetwork(evt.request, 400).catch(function () {
