@@ -11,7 +11,6 @@ self.addEventListener('install', function(evt) {
 
 self.addEventListener('fetch', function(evt) {
   const requestURL = new URL(evt.request.url);
-  //if(!/(api|cdn)/gm.test(requestURL.pathname) && evt.request.method != "POST"){
   if( !/(api|cdn)/gm.test(requestURL.pathname)
      && evt.request.method != "POST"
   ){
