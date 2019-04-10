@@ -12,6 +12,10 @@ self.addEventListener('install', function(evt) {
 self.addEventListener('fetch', function(evt) {
   const requestURL = new URL(evt.request.url);
   //if(!/(api|cdn)/gm.test(requestURL.pathname) && evt.request.method != "POST"){
+  console.log(requestURL.pathname);
+  console.log(requestURL.pathname.indexOf('api'));
+  console.log(evt.request.method);
+
   if(
     requestURL.pathname.indexOf('api') == 0 && evt.request.method != "POST"
   ){
