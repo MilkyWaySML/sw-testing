@@ -5,15 +5,20 @@ self.addEventListener('install', function(evt) {
   evt.waitUntil(caches.open(CACHE).then(function (cache) {
     cache.addAll([
       '/sw-testing/index.html',
-      '/sw-testing'
+      '/sw-testing/*.svg',
+      '/sw-testing/*.js'
     ]);
   }));
 });
 
 self.addEventListener('fetch', function(evt) {
   console.log('The service worker is serving the asset.');
-  evt.respondWith(fromCache(evt.request));
-  evt.waitUntil(update(evt.request));
+  const requestURL = new URL(evt.request.uri);
+
+  if(!/(api.stocity.ru)/.test(requestURL.pathname)){
+    evt.respondWith(fromCache(evt.request));
+    evt.waitUntil(update(evt.request));
+  }
 });
 
 function fromCache(request) {
