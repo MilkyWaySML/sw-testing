@@ -12,7 +12,7 @@ self.addEventListener('install', function(evt) {
 
 self.addEventListener('fetch', function(evt) {
   const requestURL = new URL(evt.request.url);
-  if(!/(api|cdn)/gm.test(requestURL.pathname)){
+  if(!/(api|cdn)/gm.test(requestURL.pathname) && evt.request.method != "POST"){
     evt.respondWith(fromCache(evt.request));
     evt.waitUntil(update(evt.request));
   } else {
@@ -31,11 +31,9 @@ function fromCache(request) {
 function update(request) {
   const requestURL = new URL(request.url);
 
-  if(!/(api|cdn)/gm.test(requestURL.pathname)){
-    return caches.open(CACHE).then(function (cache) {
-      return fetch(request).then(function (response) {
+  return caches.open(CACHE).then(function (cache) {
+    return fetch(request).then(function (response) {
         return cache.put(request, response);
-      });
     });
-  }
+  });
 }
