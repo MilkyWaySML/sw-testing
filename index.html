@@ -16,59 +16,6 @@
     }
   </style>
   <img src="cached/autonomous_delivery_robot.png" alt="" width="1000px" height="300px">
-  <br>
-  <br>
-  <br>
-  <br>
-  <img src="autonomous_delivery_robot.png" alt=""  width="1000px" height="300px">
-
-  <p id="update-notice" hidden>New content available. <a href="#" id="update">Update</a></p>
-
-  <script>
-  var CACHE = 'cache-update-and-refresh-v1';
-
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.onmessage = function (evt) {
-      console.log(evt);
-      var message = JSON.parse(evt.data);
-      var isRefresh = message.type === 'refresh';
-      var isAsset = message.url.includes('sw-testing');
-      var lastETag = localStorage.currentETag;
-      var isNew =  lastETag !== message.eTag;
-      if (isRefresh && isAsset && isNew) {
-        if (lastETag) {
-          console.log('new');
-          notice.hidden = false;
-        }
-        localStorage.currentETag = message.eTag;
-      }
-    };
-
-    var notice = document.querySelector('#update-notice');
-
-    var update = document.querySelector('#update');
-    update.onclick = function (evt) {
-      var img = document.querySelectorAll('img')[1];
-      console.log(img);
-      evt.preventDefault();
-      caches.open(CACHE)
-      .then(function (cache) {
-        console.log(cache);
-        return cache.match(img.src);
-      })
-      .then(function (response) {
-        console.log(response);
-        return response.blob();
-      })
-      .then(function (bodyBlob) {
-        var url = URL.createObjectURL(bodyBlob);
-        img.src = url;
-        notice.hidden = true;
-      });
-    };
-  }
-
-  </script>
 
   <script type="text/javascript" src="/sw-testing/index.js"></script></body>
 
