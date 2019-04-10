@@ -29,7 +29,7 @@ function fromCache(request) {
 }
 
 function update(request) {
-  const requestURL = new URL(evt.request.url);
+  const requestURL = new URL(request.url);
 
   if(!/(api|cdn)/gm.test(requestURL.pathname)){
     return caches.open(CACHE).then(function (cache) {
