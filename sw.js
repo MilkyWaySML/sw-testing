@@ -5,8 +5,7 @@ self.addEventListener('install', function(evt) {
   evt.waitUntil(caches.open(CACHE).then(function (cache) {
     cache.addAll([
       '/sw-testing/index.html',
-      '/sw-testing/*.svg',
-      '/sw-testing/*.js'
+      '/sw-testing/'
     ]);
   }));
 });
