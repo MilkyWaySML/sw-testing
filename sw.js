@@ -12,6 +12,7 @@ self.addEventListener('install', function(evt) {
 
 self.addEventListener('fetch', function(evt) {
   console.log('The service worker is serving the asset.');
+  console.log(evt.request);
   const requestURL = new URL(evt.request.uri);
 
   if(!/(api.stocity.ru)/.test(requestURL.pathname)){
