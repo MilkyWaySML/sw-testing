@@ -52,7 +52,7 @@
 
 .DayPicker-NavButton--prev {
   left: 1rem;
-  background-image: url(/c9d804458a098dcf3306285b643a47f3.svg);
+  background-image: url(/sw-testing/c9d804458a098dcf3306285b643a47f3.svg);
   transform: rotate(-90deg);
   background-size: 15px;
   top: 0.1em;
@@ -60,7 +60,7 @@
 
 .DayPicker-NavButton--next {
   right: 30px;
-  background-image: url(/c9d804458a098dcf3306285b643a47f3.svg);
+  background-image: url(/sw-testing/c9d804458a098dcf3306285b643a47f3.svg);
   transform: rotate(90deg);
   background-size: 15px;
   top: 0.1em;
