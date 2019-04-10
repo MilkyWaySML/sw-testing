@@ -2,7 +2,12 @@ var CACHE = 'cache-and-update';
 
 self.addEventListener('install', function(evt) {
   console.log('The service worker is being installed.');
-  evt.waitUntil(precache());
+  evt.waitUntil(caches.open(CACHE).then(function (cache) {
+    cache.addAll([
+      '/sw-testing/index.html',
+      '/sw-testing/cached'
+    ]);
+  }));
 });
 
 self.addEventListener('fetch', function(evt) {
@@ -10,15 +15,6 @@ self.addEventListener('fetch', function(evt) {
   evt.respondWith(fromCache(evt.request));
   evt.waitUntil(update(evt.request));
 });
-
-function precache() {
-  return caches.open(CACHE).then(function (cache) {
-    return cache.addAll([
-      'cached/',
-      'index.html',
-    ]);
-  });
-}
 
 function fromCache(request) {
   return caches.open(CACHE).then(function (cache) {
