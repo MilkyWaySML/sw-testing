@@ -12,7 +12,8 @@ self.addEventListener('install', function(evt) {
 
 self.addEventListener('fetch', function(evt) {
   const requestURL = new URL(evt.request.url);
-
+  console.log(evt);
+  console.log(evt.request);
   if(!/api/.test(requestURL.pathname)){
     evt.respondWith(fromCache(evt.request));
     evt.waitUntil(update(evt.request));
