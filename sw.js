@@ -14,8 +14,7 @@ self.addEventListener('fetch', function(evt) {
 function precache() {
   return caches.open(CACHE).then(function (cache) {
     return cache.addAll([
-      'https://milkywaysml.github.io/sw-testing/index.html',
-      'https://milkywaysml.github.io/sw-testing/cached'
+      'https://milkywaysml.github.io/sw-testing/cached/'
     ]);
   });
 }
