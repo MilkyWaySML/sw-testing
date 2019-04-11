@@ -4,8 +4,8 @@ self.addEventListener('install', function(evt) {
   console.log('The service worker is being installed.');
   evt.waitUntil(caches.open(CACHE).then(function (cache) {
     cache.addAll([
-      '/sw-testing/index.html',
-      '/sw-testing/'
+      '/index.html',
+      '/'
     ]);
   }));
 });
