@@ -1,7 +1,7 @@
 {
   "builds": [
     { "src": "*.html", "use": "@now/static" },
-    { "src": "*.js", "use": "@now/node" },
+    { "src": "*.js", "use": "@now/static" },
     { "src": "*.svg", "use": "@now/static" },
     { "src": "*.png", "use": "@now/static" },
     { "src": "*.jpg", "use": "@now/static" }
